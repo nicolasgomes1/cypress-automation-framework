@@ -1,4 +1,4 @@
-//comment
+//
 describe("hooks", function () {
   before(function () {
     cy.log('runs once before the first test in this block')
