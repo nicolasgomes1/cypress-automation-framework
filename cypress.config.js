@@ -1,11 +1,12 @@
 const { defineConfig } = require("cypress");
-const fs = require('fs-extra');
-const path = require('path');
+const fs = require("fs-extra");
+const path = require("path");
+const cucumber = require("cypress-cucumber-preprocessor").default;
 
 function getConfigurationByFile(file) {
-  const pathToConfigFile = path.resolve('cypress\\config', `${file}.json`);
+  const pathToConfigFile = path.resolve("cypress\\config", `${file}.json`);
 
-  if(!fs.existsSync(pathToConfigFile)) {
+  if (!fs.existsSync(pathToConfigFile)) {
     console.log("No custom config file found.");
     return {};
   }
@@ -15,18 +16,21 @@ function getConfigurationByFile(file) {
 
 module.exports = defineConfig({
   e2e: {
+    experimentalStudio: true,
     setupNodeEvents(on, config) {
-      // implement node event listeners here
-      const file = config.env.configFile || ''
+      on("file:preprocessor", cucumber());
 
-      return getConfigurationByFile(file)
+      // implement node event listeners here
+      const file = config.env.configFile || "";
+
+      return getConfigurationByFile(file);
     },
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
-    excludeSpecPattern: "cypress/e2e/3-Tests/other/*.js",
-    baseUrl:"http://www.webdriveruniversity.com",
+    // excludeSpecPattern: "cypress/e2e/3-Tests/other/*.js",
+    baseUrl: "http://www.webdriveruniversity.com",
     chromeWebSecurity: false,
-    defaultCommandTimeout:  10000,
-    pageLoadTimeout: 6000,
+    defaultCommandTimeout: 10000,
+    pageLoadTimeout: 10000,
     screenshotOnRunFailure: true,
     trashAssetsBeforeRuns: true,
     video: true,
@@ -35,16 +39,17 @@ module.exports = defineConfig({
     viewportWidth: 1920,
     projectId: "e4fgup",
     reporter: "cypress-multi-reporters",
+    chromeWebSecurity: false,
     reporterOptions: {
-      configFile: 'reporter-config.json'
+      configFile: "reporter-config.json",
     },
     retries: {
-      runMode:1,
-      openMode:1
+      runMode: 1,
+      openMode: 1,
     },
     env: {
-      first_name: "Sarah",
-      webdrivruni_homepage: "http://www.webdriveruniversity.com"
-    }
+      nobiStaging: "https://staging.nobi.cloud/",
+      nobiDev: "https://dev.nobi.cloud/",
+    },
   },
 });
