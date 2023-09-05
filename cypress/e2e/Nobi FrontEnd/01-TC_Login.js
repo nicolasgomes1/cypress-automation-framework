@@ -5,19 +5,25 @@ import NobiLogin_PO from "../../support/pageObjects/NobiLogin_PO";
 describe("Login functionality", () => {
   const nobiLogin_PO = new NobiLogin_PO();
 
+  /**
+   * Global declarations
+   */
+  let email = "nicolas.gomes+++@nobi.life";
+  let pwd = "cypress";
+
   beforeEach(() => {
-    nobiLogin_PO.VisitNobi("nobidev");
+    nobiLogin_PO.VisitNobi("nobiDev");
   });
 
   it("Login with valid credentials", () => {
-    nobiLogin_PO.LoginData("nicolas.gomes+++@nobi.life", "cypress");
+    nobiLogin_PO.LoginData(email, pwd);
     nobiLogin_PO.SignIn();
-    nobiLogin_PO.Menu("Sign out");
+    nobiLogin_PO.Menu("Sign out", 0);
     nobiLogin_PO.MsgBox("Signed out successfully.");
   });
 
   it("Login With Invalid Credentials", () => {
-    nobiLogin_PO.LoginData("nicolas.gomes+++@nobi.life", "q");
+    nobiLogin_PO.LoginData(email, "q");
     nobiLogin_PO.SignIn();
     nobiLogin_PO.MsgBox("Invalid Email or password.");
   });
@@ -32,10 +38,12 @@ describe("Login functionality", () => {
   //simple test because captcha cannot be verified
   it("Create a new family", () => {
     nobiLogin_PO.addNewFamily();
+    let r = (Math.random() + 1).toString(36).substring(7);
+
     nobiLogin_PO.UserInformation(
       "Nicolas",
       "Gomes",
-      "nicolas.gomes+++++++++@nobi.life",
+      "nicolas.gomes" + r + "@nobi.life",
       "demouser"
     );
   });

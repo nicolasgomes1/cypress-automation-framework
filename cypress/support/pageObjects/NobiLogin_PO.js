@@ -88,19 +88,27 @@ class NobiLogin_PO {
    * @param {string} Menu Open the menu and select the appropriate option on the left menu
    * @param {string} typeOfUser For users there is Management or Organisation, for remaining it is null
    */
-  Menu(Menu, typeOfUser) {
+  Menu(Menu, typeOfUser = 0) {
+    // Check if the #sidebar element is visible
+    cy.get("#sidebar").then(($sidebar) => {
+      if ($sidebar.is(":visible")) {
+        // If the #sidebar is visible, you can perform additional actions here
+        // ...
+      } else {
+        // If the #sidebar is not visible, you can perform actions like clicking the #sidebar_toggle
+        cy.get("#sidebar_toggle").click();
+      }
+    });
+
     if (typeOfUser == "Management") {
-      cy.get("#sidebar_toggle").click();
       cy.get("#users").contains(Menu).click();
     }
 
     if (typeOfUser == "Organisation") {
-      cy.get("#sidebar_toggle").click();
       cy.get("#account_users").contains(Menu).click();
     }
 
-    if (typeOfUser == null) {
-      cy.get("#sidebar_toggle").click();
+    if (typeOfUser == 0) {
       cy.get(".nav-main-link-name").contains(Menu).click();
     }
   }
