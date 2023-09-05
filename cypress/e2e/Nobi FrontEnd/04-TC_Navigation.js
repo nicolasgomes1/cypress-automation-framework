@@ -23,6 +23,9 @@ describe("Navigation", () => {
 
   it("Test description", () => {
     nobiLogin_PO.Menu("Dashboard");
+    cy.get("#out_of_bed_filter").contains("out of bed");
+    cy.get("#escalation_filter").contains("escalation(s)");
+    cy.get("#alert_filter").contains("warning(s)");
     nobiLogin_PO.Menu("Escalations");
     cy.get("#main-container").find("h1").contains("Escalations");
     nobiLogin_PO.Menu("Sleep reports");
@@ -31,5 +34,19 @@ describe("Navigation", () => {
     cy.get("#main-container").find("h1").contains("Technical alerts");
     nobiLogin_PO.Menu("Monitoring events");
     cy.get("#main-container").find("h1").contains("Monitoring events");
+    nobiLogin_PO.Menu("Residents");
+    cy.get("#main-container").find("h1").contains("Residents");
+    nobiLogin_PO.Menu("Housing units");
+    cy.get("#main-container").find("h1").contains("Housing units");
+    nobiLogin_PO.Menu("Departments");
+    cy.get("#main-container").find("h1").contains("Departments");
+    nobiLogin_PO.Menu("Users");
+    cy.get("#main-container").find("h1").contains("Users");
+    nobiLogin_PO.Menu("Site");
+    cy.get("#main-container").find("h1").contains("Site");
+    nobiLogin_PO.Menu("Integrations");
+    cy.get("#main-container").find("h1").contains("Integrations");
+    nobiLogin_PO.Menu("Change my profile");
+    cy.get("#main-container").find("h1").contains("Edit User");
   });
 });

@@ -109,7 +109,7 @@ class NobiLogin_PO {
     }
 
     if (typeOfUser == 0) {
-      cy.get(".nav-main-link-name").contains(Menu).click();
+      cy.get(".nav-main-link-name").contains(Menu).click({ force: true });
     }
   }
 }
