@@ -86,10 +86,23 @@ class NobiLogin_PO {
   /**
    * @description Go to the desired page via the menu
    * @param {string} Menu Open the menu and select the appropriate option on the left menu
+   * @param {string} typeOfUser For users there is Management or Organisation, for remaining it is null
    */
-  Menu(Menu) {
-    cy.get("#sidebar_toggle").click();
-    cy.get(".nav-main-link-name").contains(Menu).click();
+  Menu(Menu, typeOfUser) {
+    if (typeOfUser == "Management") {
+      cy.get("#sidebar_toggle").click();
+      cy.get("#users").contains(Menu).click();
+    }
+
+    if (typeOfUser == "Organisation") {
+      cy.get("#sidebar_toggle").click();
+      cy.get("#account_users").contains(Menu).click();
+    }
+
+    if (typeOfUser == null) {
+      cy.get("#sidebar_toggle").click();
+      cy.get(".nav-main-link-name").contains(Menu).click();
+    }
   }
 }
 

@@ -8,12 +8,12 @@ describe("Users", () => {
   const nobiUsers_PO = new NobiUsers_PO();
 
   beforeEach(() => {
-    nobiLogin_PO.VisitNobi();
-    nobiLogin_PO.LoginData("nicolas.gomes@nobi.life", "qDpmyVzgp4ePxbC");
+    nobiLogin_PO.VisitNobi("nobiDev");
+    nobiLogin_PO.LoginData("nicolas.gomes+++@nobi.life", "cypress");
     nobiLogin_PO.SignIn();
   });
 
-  it.only("Creation of user", () => {
+  it("Creation of user", () => {
     nobiLogin_PO.Menu("Users");
     nobiUsers_PO.adduser();
     nobiUsers_PO.addUserInfo(
@@ -29,7 +29,7 @@ describe("Users", () => {
 
   it("Edition of a user", () => {
     nobiLogin_PO.Menu("Users");
-    cy.contains("tr", "danielle+west@nobi.life").within(() => {
+    cy.contains("tr", "nicolas+011@nobi.life").within(() => {
       cy.contains("Edit").click();
     });
   });
