@@ -51,15 +51,15 @@ describe("Users Management", () => {
   //  });
   //});
 
-  // it("Resend invitation", () => {
-  //  nobiLogin_PO.Menu("Users");
-  //  cy.contains("tr", "nicolas+011@nobi.life").within(() => {
-  //   cy.contains("Resend invitation").click();
-  //  });
-  //  nobiLogin_PO.MsgBox(
-  //    "Invitation sent. Ask the user to check his/her email."
-  //  );
-  //});
+  it.only("Resend invitation", () => {
+    nobiLogin_PO.Menu("Users");
+    cy.contains("tr", "nicolase81w4@nobi.life").within(() => {
+      cy.contains("Resend invitation").click();
+    });
+    nobiLogin_PO.MsgBox(
+      "Invitation sent. Ask the user to check his/her email."
+    );
+  });
 
   it("Delete user but cancel the action", () => {
     nobiLogin_PO.Menu("Users");
