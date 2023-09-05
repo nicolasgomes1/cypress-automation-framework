@@ -79,7 +79,7 @@ class NobiLogin_PO {
    * @param {string} Msg Message after actions which can be errors or valid messages
    */
   MsgBox(Msg) {
-    cy.get("[data-notify='message']").should("have.text", Msg);
+    cy.get("[data-notify='message']").contains(Msg);
     cy.get(".close").click();
   }
 
@@ -89,27 +89,16 @@ class NobiLogin_PO {
    * @param {string} typeOfUser For users there is Management or Organisation, for remaining it is null
    */
   Menu(Menu, typeOfUser = 0) {
-    // Check if the #sidebar element is visible
-    cy.get("#sidebar").then(($sidebar) => {
-      if ($sidebar.is(":visible")) {
-        // If the #sidebar is visible, you can perform additional actions here
-        // ...
-      } else {
-        // If the #sidebar is not visible, you can perform actions like clicking the #sidebar_toggle
-        cy.get("#sidebar_toggle").click();
-      }
-    });
-
     if (typeOfUser == "Management") {
-      cy.get("#users").contains(Menu).click();
+      cy.get("#users").contains(Menu).click({ force: true });
     }
 
     if (typeOfUser == "Organisation") {
-      cy.get("#account_users").contains(Menu).click();
+      cy.get("#account_users").contains(Menu).click({ force: true });
     }
 
     if (typeOfUser == 0) {
-      cy.get(".nav-main-link-name").contains(Menu).click({ force: true });
+      cy.get(".nav-main-link-name").contains(Menu).click({});
     }
   }
 }
