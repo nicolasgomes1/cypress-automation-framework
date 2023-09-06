@@ -1,11 +1,9 @@
 /// <reference types="Cypress" />
 
 import NobiLogin_PO from "../../support/pageObjects/NobiLogin_PO";
-import NobiUsers_PO from "../../support/pageObjects/NobiUsers_PO";
 
 describe("Users Management", () => {
   const nobiLogin_PO = new NobiLogin_PO();
-  const nobiUsers_PO = new NobiUsers_PO();
 
   /**
    * Global declarations
@@ -22,6 +20,7 @@ describe("Users Management", () => {
 
   afterEach(() => {
     nobiLogin_PO.Menu("Sign out");
+    nobiLogin_PO.MsgBox("Signed out successfully");
   });
 
   it("Go to contact support ", () => {

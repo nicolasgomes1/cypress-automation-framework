@@ -5,7 +5,6 @@ import NobiUsers_PO from "../../support/pageObjects/NobiUsers_PO";
 
 describe("Navigation", () => {
   const nobiLogin_PO = new NobiLogin_PO();
-  const nobiUsers_PO = new NobiUsers_PO();
   /**
    * Global declarations
    */

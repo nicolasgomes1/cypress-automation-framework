@@ -13,14 +13,17 @@ describe("Users Management", () => {
   let email = "nicolas.gomes+++@nobi.life";
   let pwd = "cypress";
   let r = (Math.random() + 1).toString(36).substring(7);
+
   beforeEach(() => {
     nobiLogin_PO.VisitNobi("nobiDev");
     nobiLogin_PO.LoginData(email, pwd);
     nobiLogin_PO.SignIn();
+    nobiLogin_PO.MsgBox("Signed in successfully");
   });
 
   afterEach(() => {
     nobiLogin_PO.Menu("Sign out");
+    nobiLogin_PO.MsgBox("Signed out successfully");
   });
 
   it("Creation of user", () => {
@@ -38,9 +41,15 @@ describe("Users Management", () => {
   });
 
   it("Edition of a user", () => {
-    nobiLogin_PO.Menu("Users");
+    nobiLogin_PO.Menu("Users", "Management");
     cy.contains("tr", "nicolas" + r + "@nobi.life").within(() => {
       cy.contains("Edit").click();
+    });
+    cy.get("#user_phone").clear().type("+32490666012");
+    cy.get("#submit_btn").click();
+    nobiLogin_PO.MsgBox("Successfully updated");
+    cy.contains("tr", "nicolas" + r + "@nobi.life").within(() => {
+      cy.contains("+32490666012");
     });
   });
 
@@ -51,14 +60,12 @@ describe("Users Management", () => {
   //  });
   //});
 
-  it.only("Resend invitation", () => {
+  it("Resend invitation present", () => {
     nobiLogin_PO.Menu("Users");
-    cy.contains("tr", "nicolase81w4@nobi.life").within(() => {
-      cy.contains("Resend invitation").click();
+    cy.contains("tr", "nicolas1uxwck@nobi.life").within(() => {
+      cy.contains("Resend invitation");
     });
-    nobiLogin_PO.MsgBox(
-      "Invitation sent. Ask the user to check his/her email."
-    );
+    //  nobiLogin_PO.MsgBox("Invitation sent. Ask the user to check his/her email.");
   });
 
   it("Delete user but cancel the action", () => {

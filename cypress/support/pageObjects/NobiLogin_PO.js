@@ -80,6 +80,8 @@ class NobiLogin_PO {
    */
   MsgBox(Msg) {
     cy.get("[data-notify='message']").contains(Msg);
+    cy.get("[data-notify='message']").should("be.visible");
+    cy.wait(2000);
     cy.get(".close").click();
   }
 
@@ -88,17 +90,18 @@ class NobiLogin_PO {
    * @param {string} Menu Open the menu and select the appropriate option on the left menu
    * @param {string} typeOfUser For users there is Management or Organisation, for remaining it is null
    */
-  Menu(Menu, typeOfUser = 0) {
+  Menu(Menu, typeOfUser = "0") {
     if (typeOfUser == "Management") {
       cy.get("#users").contains(Menu).click({ force: true });
+      cy.log("a");
     }
-
     if (typeOfUser == "Organisation") {
       cy.get("#account_users").contains(Menu).click({ force: true });
+      cy.log("b");
     }
-
-    if (typeOfUser == 0) {
-      cy.get(".nav-main-link-name").contains(Menu).click({});
+    if (typeOfUser == "0") {
+      cy.get(".nav-main-link-name").contains(Menu).click({ force: true });
+      cy.log("c");
     }
   }
 }
