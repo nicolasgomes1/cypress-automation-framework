@@ -34,7 +34,7 @@ module.exports = defineConfig({
     screenshotOnRunFailure: true,
     trashAssetsBeforeRuns: true,
     video: true,
-    videoUploadOnPasses: false,
+    // videoUploadOnPasses: false,
     viewportHeight: 1080,
     viewportWidth: 1920,
     projectId: "e4fgup",

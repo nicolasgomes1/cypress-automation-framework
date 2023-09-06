@@ -2,7 +2,7 @@
 
 import NobiLogin_PO from "../../support/pageObjects/NobiLogin_PO";
 
-describe("Users Management", () => {
+describe("Navigation support", () => {
   const nobiLogin_PO = new NobiLogin_PO();
 
   /**

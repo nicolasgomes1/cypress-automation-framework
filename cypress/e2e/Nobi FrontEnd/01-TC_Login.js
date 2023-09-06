@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-
+require("cypress-plugin-tab");
 import NobiLogin_PO from "../../support/pageObjects/NobiLogin_PO";
 
 describe("Login functionality", () => {
@@ -46,5 +46,14 @@ describe("Login functionality", () => {
       "nicolas.gomes" + r + "@nobi.life",
       "demouser"
     );
+    cy.wait(2000);
+    // Switch to the iframe
+    cy.get("iframe").then(($iframe) => {
+      const iframeDoc = $iframe.contents();
+
+      // Find and click the element within the iframe
+      iframeDoc.find(".recaptcha-checkbox-border");
+      iframeDoc.find("#recaptcha-anchor").click();
+    });
   });
 });

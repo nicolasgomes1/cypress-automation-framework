@@ -3,7 +3,7 @@
 import NobiLogin_PO from "../../support/pageObjects/NobiLogin_PO";
 import NobiHousingUnits_PO from "../../support/pageObjects/NobiHousingUnits_PO";
 
-describe("test description", () => {
+describe("Housing Units", () => {
   const nobiLogin_PO = new NobiLogin_PO();
   const nobiHousingUnit_PO = new NobiHousingUnits_PO();
 
