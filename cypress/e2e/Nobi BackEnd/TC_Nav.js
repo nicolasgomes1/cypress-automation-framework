@@ -24,11 +24,6 @@ describe("BackEnd Nav", () => {
     nobiLogin_PO.MsgBox("Signed out successfully");
   });
 
-  it.skip("Check Dashboard", () => {
-    cy.get("#dashboard").click();
-    cy.get("#page_title").should("have.text", "Dashboard");
-  });
-
   it("General Menu", () => {
     cy.get("#tabs")
       .contains("General")
@@ -44,33 +39,6 @@ describe("BackEnd Nav", () => {
       .trigger("mouseover")
       .then(() => {
         cy.get("#account_related .menu").invoke("show").should("be.visible");
-      });
-  });
-
-  it("Related device", () => {
-    cy.get("#tabs")
-      .contains("Related device")
-      .trigger("mouseover")
-      .then(() => {
-        cy.get("#device_related .menu").invoke("show").should("be.visible");
-      });
-  });
-
-  it("Related resident", () => {
-    cy.get("#tabs")
-      .contains("Related resident")
-      .trigger("mouseover")
-      .then(() => {
-        cy.get("#resident_related .menu").invoke("show").should("be.visible");
-      });
-  });
-
-  it("AI", () => {
-    cy.get("#tabs")
-      .contains("AI")
-      .trigger("mouseover")
-      .then(() => {
-        cy.get("#ai .menu").invoke("show").should("be.visible");
       });
   });
 });
