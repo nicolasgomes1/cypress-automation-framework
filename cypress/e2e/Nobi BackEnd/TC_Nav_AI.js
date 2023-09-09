@@ -4,9 +4,11 @@ import NobiNavigation_PO from "../../support/pageObjects/NobiNavigation_PO";
 
 const nobiLogin_PO = new NobiLogin_PO();
 const nobiNavigation_PO = new NobiNavigation_PO();
-describe("BackEnd Nav", () => {
+describe("BackEnd Nav trough AI options", () => {
   const nobiLogin_PO = new NobiLogin_PO();
 
+  // Set the flag to do not skip the logout
+  const skipLogout = false;
   /**
    * Global declarations
    */
@@ -21,8 +23,10 @@ describe("BackEnd Nav", () => {
   });
 
   afterEach(() => {
-    cy.get("#logout").click();
-    nobiLogin_PO.MsgBox("Signed out successfully");
+    if (!skipLogout) {
+      cy.get("#logout").click();
+      nobiLogin_PO.MsgBox("Signed out successfully");
+    }
   });
 
   it("AI", () => {
@@ -40,6 +44,7 @@ describe("BackEnd Nav", () => {
     cy.get("#download_downsampled_training_csv")
       .contains("Download downsampled training CSV")
       .click();
+
     cy.get("#page_title").should(
       "have.text",
       "Download downsampled training CSV"
@@ -71,7 +76,11 @@ describe("BackEnd Nav", () => {
 
   it("AI Turbo Annotator", () => {
     nobiNavigation_PO.ExpandMenu("AI", "ai");
-    cy.get("#turbo_annotator").contains("Pose stats").click();
-    cy.get("#page_title").should("have.text", "Pose stats");
+    cy.get("#turbo_annotator").contains("Turbo Annotator").click();
+    cy.get("#main-container").contains(
+      "Cycle through positions with keyboard arrows. Click to annotate. Shift click to annotate all up till that one."
+    );
+    // Set the flag to skip afterEach
+    skipLogout = true;
   });
 });

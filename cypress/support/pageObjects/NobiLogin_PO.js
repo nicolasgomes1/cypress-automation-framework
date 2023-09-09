@@ -81,7 +81,7 @@ class NobiLogin_PO {
   MsgBox(Msg) {
     cy.get("[data-notify='message']").contains(Msg);
     cy.get("[data-notify='message']").should("be.visible");
-    cy.wait(2000);
+    cy.wait(500);
     cy.get(".close").click();
   }
 
