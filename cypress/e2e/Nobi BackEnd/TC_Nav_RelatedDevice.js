@@ -5,7 +5,7 @@ import NobiNavigation_PO from "../../support/pageObjects/NobiNavigation_PO";
 const nobiLogin_PO = new NobiLogin_PO();
 const nobiNavigation_PO = new NobiNavigation_PO();
 
-describe("BackEnd Nav", () => {
+describe("BackEnd Nav to Related devices", () => {
   const nobiLogin_PO = new NobiLogin_PO();
 
   /**

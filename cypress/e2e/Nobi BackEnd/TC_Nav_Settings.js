@@ -3,7 +3,7 @@ import NobiLogin_PO from "../../support/pageObjects/NobiLogin_PO";
 
 const nobiLogin_PO = new NobiLogin_PO();
 
-describe("BackEnd Nav", () => {
+describe("BackEnd Nav to Settings", () => {
   const nobiLogin_PO = new NobiLogin_PO();
 
   /**

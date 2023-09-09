@@ -60,10 +60,17 @@ function findAndExportTestCases(folderPath, outputFile) {
   }
 }
 
-const outputPath =
-  "C:/Users/nicol/OneDrive/Desktop/Nobi/cypress-automation-framework/cypress/e2e/test_cases.txt";
+//const outputPath ="C:/Users/nicol/OneDrive/Desktop/Nobi/cypress-automation-framework/cypress/e2e/test_cases.txt";
+// Define the relative path to the file
+const relativePath = "../test_cases_features.txt";
 
-findAndExportTestCases(
-  "C:/Users/nicol/OneDrive/Desktop/Nobi/cypress-automation-framework/cypress/e2e/Nobi BackEnd",
-  outputPath
-);
+// Define the relative path to the folder
+const relativeFolderPath =
+  "C:/Users/nicol/OneDrive/Desktop/Nobi/cypress-automation-framework/cypress/e2e";
+// Construct the absolute path based on __dirname
+const outputPath = path.join(__dirname, relativePath);
+
+findAndExportTestCases(relativeFolderPath, outputPath);
+
+//node ExportFeatures.js
+//node ExportFeatures.js && node ExportTests.js
