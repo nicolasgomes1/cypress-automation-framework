@@ -21,12 +21,11 @@
 // Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
 Cypress.Commands.add("navigateTo_WebdriverUni_Homepage", () => {
   cy.visit("/");
-})
+});
 
 Cypress.Commands.add("navigateTo_WebdriverUni_Checkbox_Page", () => {
   cy.visit("/" + "/Dropdown-Checkboxes-RadioButtons/index.html");
-})
-
+});
 
 Cypress.Commands.add("selectProduct", (productName) => {
   cy.get(".fixed_wrapper .prdocutname").each(($el, index, $list) => {
@@ -56,7 +55,17 @@ Cypress.Commands.add(
     cy.get($selector).contains(textToLocate);
   }
 );
+Cypress.Commands.add("printLog", (message) => {
+  cy.task("log", { message });
+});
 
+Cypress.Commands.add("logTestResult", () => {
+  const currentTest = cy.state("test");
+  const testName = currentTest.title;
+  const testState = currentTest.state;
 
+  cy.task("log", `${testName} ${testState}.`);
+  cy.task("log", "----------------------------------");
+});
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })

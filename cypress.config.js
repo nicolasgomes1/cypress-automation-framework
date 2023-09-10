@@ -23,8 +23,16 @@ module.exports = defineConfig({
       // implement node event listeners here
       const file = config.env.configFile || "";
 
+      // Add your task definition inside the on('task') block
+      on("task", {
+        log(message) {
+          console.log(message);
+          return null;
+        },
+      });
       return getConfigurationByFile(file);
     },
+
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
     // excludeSpecPattern: "cypress/e2e/3-Tests/other/*.js",
     baseUrl: "http://www.webdriveruniversity.com",

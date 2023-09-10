@@ -23,13 +23,20 @@ describe("BackEnd Nav trough General options", () => {
     nobiLogin_PO.VisitNobi("nobiDev");
     nobiLogin_PO.LoginData(NobiAdminUser.username, NobiAdminUser.password);
     nobiLogin_PO.SignIn();
+    cy.task("log", "Logged in successfully.");
   });
 
   afterEach(() => {
     if (!skipLogout) {
       cy.get("#logout").click();
       nobiLogin_PO.MsgBox("Signed out successfully");
+      cy.task("log", "Logged out successfully.");
     }
+  });
+
+  afterEach(function () {
+    // Log the test result using the custom command
+    cy.logTestResult();
   });
 
   it("General", () => {
