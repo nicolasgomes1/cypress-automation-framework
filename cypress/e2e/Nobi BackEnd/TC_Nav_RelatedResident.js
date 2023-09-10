@@ -29,6 +29,7 @@ describe("BackEnd Nav trough Related residents options", () => {
     cy.get("#logout").click();
     nobiLogin_PO.MsgBox("Signed out successfully");
     cy.task("log", "Logged out successfully.");
+    cy.clearAllCookies();
   });
 
   afterEach(function () {
