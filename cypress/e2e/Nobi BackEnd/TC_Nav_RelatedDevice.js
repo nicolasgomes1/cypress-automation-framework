@@ -2,12 +2,9 @@
 import NobiLogin_PO from "../../support/pageObjects/NobiLogin_PO";
 import NobiNavigation_PO from "../../support/pageObjects/NobiNavigation_PO";
 
-const nobiLogin_PO = new NobiLogin_PO();
-const nobiNavigation_PO = new NobiNavigation_PO();
-
 describe("BackEnd Nav to Related devices options", () => {
   const nobiLogin_PO = new NobiLogin_PO();
-
+  const nobiNavigation_PO = new NobiNavigation_PO();
   /**
    * Global declarations
    */
