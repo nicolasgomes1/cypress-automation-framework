@@ -95,7 +95,7 @@ describe("BackEnd Nav to Related devices options", () => {
 
   it("Ignored Poses", () => {
     nobiNavigation_PO.ExpandMenu("Related device", "device_related");
-    cy.get("#menu_item").contains("Ignored Poses").click();
+    cy.get("#ignored_poses").contains("Ignored Poses").click();
     cy.get("#page_title").should("have.text", "Ignored Poses");
   });
 
