@@ -3,19 +3,22 @@ import NobiLogin_PO from "../../support/pageObjects/NobiLogin_PO";
 
 const nobiLogin_PO = new NobiLogin_PO();
 
-describe("BackEnd Nav Dashboard", () => {
+describe("BackEnd Nav trough Dashboard options", () => {
   const nobiLogin_PO = new NobiLogin_PO();
 
   /**
    * Global declarations
    */
-  let email = "nicolas.gomes+admin@nobi.life";
-  let pwd = "Olivia@1951";
-  let r = (Math.random() + 1).toString(36).substring(7);
+  let NobiAdminUser;
+  before(() => {
+    cy.fixture("NobiAdminUser").then((user) => {
+      NobiAdminUser = user;
+    });
+  });
 
   beforeEach(() => {
     nobiLogin_PO.VisitNobi("nobiDev");
-    nobiLogin_PO.LoginData(email, pwd);
+    nobiLogin_PO.LoginData(NobiAdminUser.username, NobiAdminUser.password);
     nobiLogin_PO.SignIn();
   });
 
